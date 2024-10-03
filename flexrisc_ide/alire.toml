@@ -10,3 +10,6 @@ website = ""
 tags = []
 
 executables = ["flexrisc_ide"]
+
+[[depends-on]]  
+gtkada = "^24.0.0"
