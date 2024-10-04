@@ -4,6 +4,7 @@ with Gtk.Window; use Gtk.Window;
 with Gtk.Enums; use Gtk.Enums;
 with Gtk.Button; use Gtk.Button;
 with Gtk.Grid; use Gtk.Grid;
+with Button_callback; use Button_callback;
 
 procedure protoboard_ide is
 
@@ -50,6 +51,11 @@ begin
 
    -- Ajouter la grille à la fenêtre
    win.add(grid);
+
+   -- Action liee aux boutons 
+   bouton1.On_Clicked (On_Button_Clicked'Access);
+   bouton2.On_Clicked (On_Button_Clicked'Access);
+   bouton3.On_Clicked (On_Button_Clicked'Access);
 
    -- Affichage de la fenêtre et des boutons
    win.show_all;
