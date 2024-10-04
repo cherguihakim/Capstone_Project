@@ -6,7 +6,7 @@ with Gtk.Button; use Gtk.Button;
 with Gtk.Grid; use Gtk.Grid;
 with Button_callback; use Button_callback;
 
-procedure protoboard_ide is
+procedure flexrisc_ide is
 
    win : Gtk_Window;
    grid : Gtk_Grid;
@@ -66,4 +66,4 @@ begin
    exception 
   when loading_error => Put_Line("Erreur du chargement de l'icone");
 
-end protoboard_ide;
+end flexrisc_ide;
