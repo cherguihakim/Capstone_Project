@@ -4,6 +4,7 @@ with Gtk.Window; use Gtk.Window;
 with Gtk.Enums; use Gtk.Enums;
 with Gtk.Button; use Gtk.Button;
 with Gtk.Grid; use Gtk.Grid;
+with Gtk.GEntry ; use Gtk.GEntry; 
 with Button_callback; use Button_callback;
 
 procedure flexrisc_ide is
@@ -11,6 +12,7 @@ procedure flexrisc_ide is
    win : Gtk_Window;
    grid : Gtk_Grid;
    bouton1, bouton2, bouton3 : Gtk_Button;
+   user_text : Gtk_GEntry;            -- Zone de texte
 
    -- Exception pour la gestion d'erreurs de chargement
    loading_error : exception;
@@ -30,6 +32,7 @@ begin
 
 
 
+
    -- Création de la grille
    Gtk_New(grid);
    grid.set_row_spacing(10); -- Espace entre les rangées
@@ -44,10 +47,16 @@ begin
    Gtk_New(bouton3);
    bouton3.set_label("Run");
 
+   --Creation de la zone de texte 
+   Gtk_New(user_text);
+   user_text.set_placeholder_text("Enter your text here...");  -- Texte indicatif
+
    -- Ajout des boutons à la grille avec leurs positions (ligne, colonne)
    grid.attach(bouton1, 0, 0, 1, 1);  -- Bouton 1 en haut à gauche (col 0, row 0)
    grid.attach(bouton2, 1, 0, 1, 1);  -- Bouton 2 en haut au milieu (col 1, row 0)
    grid.attach(bouton3, 2, 0, 1, 1);  -- Bouton 3 en haut à droite (col 2, row 0)
+   grid.attach(user_text, 0, 1, 3, 1);    -- Zone de texte en dessous des boutons (col 0 à 2, row 1)
+
 
    -- Ajouter la grille à la fenêtre
    win.add(grid);
