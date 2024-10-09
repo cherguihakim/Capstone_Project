@@ -25,3 +25,5 @@ Implementation Phases:
 The project will follow a SCRUM methodology, with sprints focusing on tasks like component selection, board layout, SoC deployment infrastructure, and Ada integration.
 
 The project is funded by AdaCore and led by Chief Engineer Olivier Henley.
+
+Halo
