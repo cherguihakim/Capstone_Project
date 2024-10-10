@@ -5,7 +5,7 @@ with Gtk.Enums; use Gtk.Enums;
 with Gtk.Button; use Gtk.Button;
 with Gtk.Grid; use Gtk.Grid;
 with Gtk.GEntry ; use Gtk.GEntry; 
-with Button_callback; use Button_callback;
+with Callbacks;  use Callbacks;
 
 procedure flexrisc_ide is
 
@@ -66,8 +66,11 @@ begin
    bouton2.On_Clicked (On_Button_Clicked'Access);
    bouton3.On_Clicked (On_Button_Clicked'Access);
 
+   win.On_Destroy (Callbacks.Window_Destroy'Access);
+
    -- Affichage de la fenêtre et des boutons
    win.show_all;
+
 
    -- Exécution de la boucle principale Gtk
    Main;
