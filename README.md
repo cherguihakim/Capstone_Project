@@ -26,4 +26,4 @@ The project will follow a SCRUM methodology, with sprints focusing on tasks like
 
 The project is funded by AdaCore and led by Chief Engineer Olivier Henley.
 
-Halo
+Hallo
