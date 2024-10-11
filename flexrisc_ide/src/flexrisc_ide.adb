@@ -43,9 +43,9 @@ begin
    Gtk_New(bouton1);
    bouton1.set_label("File");
    Gtk_New(bouton2);
-   bouton2.set_label("Compile");
+   bouton2.set_label("Burn");
    Gtk_New(bouton3);
-   bouton3.set_label("Run");
+   bouton3.set_label("Reset");
 
    --Creation de la zone de texte 
    Gtk_New(user_text);
@@ -66,6 +66,7 @@ begin
    bouton2.On_Clicked (On_Button_Clicked'Access);
    bouton3.On_Clicked (On_Button_Clicked'Access);
 
+   --Permet d'arreter le programme lorsqu'on ferme la fenetre
    win.On_Destroy (Callbacks.Window_Destroy'Access);
 
    -- Affichage de la fenêtre et des boutons
