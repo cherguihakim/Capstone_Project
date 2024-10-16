@@ -62,7 +62,7 @@ begin
    win.add(grid);
 
    -- Action liee aux boutons 
-   bouton1.On_Clicked (On_Button_Clicked'Access);
+   bouton1.On_Clicked (Run'Access);
    bouton2.On_Clicked (On_Button_Clicked'Access);
    bouton3.On_Clicked (On_Button_Clicked'Access);
 
