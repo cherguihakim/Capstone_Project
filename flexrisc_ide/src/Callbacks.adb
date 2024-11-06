@@ -1,40 +1,37 @@
-with Ada.Text_IO; use Ada.Text_IO;
-with Gtk.Main; 
-with Gtk.Widget;
-with Gtk.Enums;          use Gtk.Enums;
+WITH Gtk.Main ;                USE Gtk.Main ;
+WITH Gtk.Label ;                 USE Gtk.Label ;
 with Gtkada.File_Selection; use Gtkada.File_Selection;
-with Gtk;                use Gtk;
+with Ada.Text_IO; use Ada.Text_IO;
 
-package body Callbacks is
-   procedure On_Button_Clicked (Button : access Gtk_Button_Record'Class) is
-   begin
-      Put_Line ("Button Clicked!");
-   end;
 
-   procedure Window_Destroy
-     (Object : access Gtk.Widget.Gtk_Widget_Record'Class) is
-      pragma Unreferenced (Object);
-   begin
-      Gtk.Main.Main_Quit;
-   end Window_Destroy;
+PACKAGE BODY Callbacks IS
 
-   function Help return String is
-   begin
-      return "the @Gtkada.File_Selection_Dialog@B is a dialog to ask the user"
-        & " for a file name. It can also give access to basic file and"
-        & " directory manipulation, such as create, rename, delete.";
-   end Help;
 
-   procedure Run (Button : access Gtk_Button_Record'Class) is
-      pragma Unreferenced (Button);
+   PROCEDURE Stop_Program(Emetteur : access Gtk_widget_Record'class) IS
+      PRAGMA Unreferenced (Emetteur );
+   BEGIN
+      Main_Quit;
+   END Stop_Program ;
+
+
+   PROCEDURE Reseting(Emetteur : ACCESS GTK_Widget_Record'Class ;
+                         F : T_Fenetre) IS
+      PRAGMA Unreferenced(Emetteur ) ;
+   BEGIN
+      F.Lbl.set_text("No files selected");
+   END Reseting;
+
+   PROCEDURE Run(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) IS 
+
+   File_Name : String := Gtkada.File_Selection.File_Selection_Dialog;
+   pragma Unreferenced (Emetteur);
+
    begin
-      Ada.Text_IO.Put_Line
-        ("Selected: "
-         & Gtkada.File_Selection.File_Selection_Dialog
-           (Title       => "Select an existing file",
-            Must_Exist  => True));
+    if File_Name /= "" then
+        F.Lbl.set_text("You selected : " & File_Name);
+    end if;
+
+    Ada.Text_IO.Put_Line("Le texte du label est : " & File_Name);
    end Run;
 
-
-
-end Callbacks;
+END Callbacks ;

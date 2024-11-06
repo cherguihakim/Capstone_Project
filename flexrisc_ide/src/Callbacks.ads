@@ -1,14 +1,10 @@
-with Gtk.Button; use Gtk.Button;
-with Gtk.Widget; use Gtk.Widget;
-with Gtk.Frame; use Gtk.Frame;
-
-package Callbacks is
-   procedure On_Button_Clicked (Button : access Gtk_Button_Record'Class);
-   procedure Window_Destroy (Object : access Gtk.Widget.Gtk_Widget_Record'Class);
-   procedure Run (Button : access Gtk_Button_Record'Class);
-   function Help return String;
+WITH Gtk.Widget ;                USE Gtk.Widget ;
+with P_Fenetre ;                 use P_Fenetre ;
 
 
+PACKAGE Callbacks IS
 
-
-end Callbacks;
+   PROCEDURE Stop_Program(Emetteur : access Gtk_widget_Record'class) ;
+   PROCEDURE Reseting(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) ;
+   PROCEDURE Run(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) ;
+END Callbacks ;
