@@ -16,7 +16,6 @@ PACKAGE P_Fenetre IS
       grid : Gtk_Grid;
       Lbl     : Gtk_Label ;
       --File_Name : String(1..256);
-      --Box     : Gtk_Vbox ;
    END RECORD ;
 
    PROCEDURE Initialize(F : IN OUT T_Fenetre) ;
