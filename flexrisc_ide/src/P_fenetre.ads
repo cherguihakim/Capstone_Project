@@ -7,6 +7,7 @@ WITH Gtk.Widget ;        USE Gtk.Widget ;
 WITH Gtk.Grid ;          USE Gtk.Grid ;
 WITH Ada.Finalization ;  USE Ada.Finalization ;
 WITH Gtk.Handlers ;
+WITH Ada.Strings.Unbounded; USE Ada.Strings.Unbounded;
 
 PACKAGE P_Fenetre IS
 
@@ -15,7 +16,7 @@ PACKAGE P_Fenetre IS
       bouton_file, bouton_burn, bouton_reset    : Gtk_Button ;
       grid : Gtk_Grid;
       Lbl     : Gtk_Label ;
-      --File_Name : String(1..256);
+      File_Name  : Unbounded_String;
    END RECORD ;
 
    PROCEDURE Initialize(F : IN OUT T_Fenetre) ;

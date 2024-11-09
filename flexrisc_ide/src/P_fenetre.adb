@@ -45,6 +45,7 @@ PACKAGE BODY P_Fenetre IS
       Connect(F.Win, "destroy", Stop_Program'ACCESS) ;
       Connect(F.bouton_file, "clicked", Run'ACCESS, F) ;
       Connect(F.bouton_reset, "clicked", Reseting'ACCESS, F) ;
+      Connect(F.bouton_burn, "clicked", Prog_FPGA'ACCESS, F) ;
 
       F.Win.Show_all ;
    END Initialize ;
