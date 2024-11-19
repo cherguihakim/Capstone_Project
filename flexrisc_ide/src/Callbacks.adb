@@ -3,9 +3,8 @@ WITH Gtk.Label ;                 USE Gtk.Label ;
 with Gtkada.File_Selection; use Gtkada.File_Selection;
 WITH Ada.Strings.Fixed; USE Ada.Strings.Fixed;
 WITH Ada.Text_IO; USE Ada.Text_IO;
-WITH Ada.Command_Line; USE Ada.Command_Line;
-WITH Ada.Directories;
-WITH Interfaces.C.Strings; USE Interfaces.C.Strings;
+with System.Strings; use System.Strings;
+with GNAT.OS_Lib; use GNAT.OS_Lib;
 
 PACKAGE BODY Callbacks IS
 
@@ -39,15 +38,32 @@ PACKAGE BODY Callbacks IS
 
    PROCEDURE Prog_FPGA(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) IS 
    File_Name : constant String := F.Lbl.Get_Text;
-   Prefix    : constant String := "You selected : ";
-   Command   : String(1..256) ;
+   Program_Name : constant String := "quartus_pgm";
+   File_sof : constant String := "C:\Users\Hakim\Downloads\terasic_de2_115.sof";
+   Commande : String := "quartus_pgm -c USB-Blaster -m JTAG -o ""p;C:\Users\Hakim\Downloads\terasic_de2_115.sof""";
+    -- Construction des arguments explicites
+   Arguments : Argument_List := (
+      new String'("-c"),
+      new String'("USB-Blaster"),
+      new String'("-m"),
+      new String'("JTAG"),
+      new String'("-o"),
+      new String'("""p;C:\Users\Hakim\Downloads\terasic_de2_115.sof""")
+   );
+
+   Result : Integer;
 
    BEGIN 
-   -- Étape 2 : Construire la commande Quartus
-   --Command := "quartus_pgm -c USB-Blaster -m jtag -o ""p;" & File_Name & """";
+   -- Exécuter la commande système
+   Result := GNAT.OS_Lib.Spawn (Program_Name => Program_Name,
+                                Args => Arguments
+                                );
 
-   -- Affiche la commande pour vérifier
-   Ada.Text_IO.Put_Line("Commande : " & File_Name);
+   if Result = 0 then
+      Put_Line ("Command successful");
+   else
+      Put_Line ("Unable to execute the command");
+   end if;
 
    END;
 
