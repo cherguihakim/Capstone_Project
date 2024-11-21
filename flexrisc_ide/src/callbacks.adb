@@ -2,6 +2,8 @@ with Gtk.Main;              use Gtk.Main;
 with Gtk.Label;             use Gtk.Label;
 with Gtkada.File_Selection; use Gtkada.File_Selection;
 with Ada.Text_IO;           use Ada.Text_IO;
+with GNAT.OS_Lib; use GNAT.OS_Lib;
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 package body Callbacks is
 
@@ -27,5 +29,34 @@ package body Callbacks is
       end if;
       Ada.Text_IO.Put_Line ("Le texte du label est : " & File_Name);
    end;
+
+   PROCEDURE Prog_FPGA(Emetteur : ACCESS GTK_Widget_Record'Class ; F : Fenetre_T) IS 
+      File_Name :constant String := P_Fenetre.Get_File_Name; 
+      Program_Name : constant String := "quartus_pgm";
+      -- Construction des arguments explicites
+      Arguments : Argument_List := (
+         new String'("-c"),
+         new String'("USB-Blaster"),
+         new String'("-m"),
+         new String'("JTAG"),
+         new String'("-o"),
+         new String'("""" & "p;" & File_Name & """")
+      );
+
+      Result : Integer;
+
+   BEGIN 
+      -- Exécuter la commande système
+      Result := GNAT.OS_Lib.Spawn (Program_Name => Program_Name,
+                                Args => Arguments
+                                );
+
+      if Result = 0 then
+         Put_Line ("Command successful");
+      else
+         Put_Line ("Unable to execute the command");
+      end if;
+
+   END;
 
 end Callbacks;

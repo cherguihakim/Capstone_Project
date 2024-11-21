@@ -26,6 +26,12 @@ is
       Ada.Text_IO.Put_Line ("File_Name : " & F.File_Name'Image);
    end Set_File_Name;
 
+   function Get_File_Name return String is
+      begin
+      -- Convertir le Unbounded_String en String
+      return SU.To_String(F.File_Name);
+   end Get_File_Name;
+
    procedure Initialize is
    begin
       Init;
@@ -79,6 +85,7 @@ is
       Connect (F.Win, "destroy", Stop_Program'ACCESS);
       Connect (F.bouton_file, "clicked", Run'Access);
       Connect (F.bouton_reset, "clicked", Reseting'ACCESS, F);
+      Connect(F.bouton_burn, "clicked", Prog_FPGA'ACCESS, F) ;
 
       F.Win.Show_all;
    end Initialize;

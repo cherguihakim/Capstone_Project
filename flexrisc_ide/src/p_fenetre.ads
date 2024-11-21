@@ -30,5 +30,6 @@ package P_Fenetre is
    use P_UHandlers;
 
    procedure Set_File_Name (File_Name : String);
+   function Get_File_Name return String;
 
 end P_Fenetre;
