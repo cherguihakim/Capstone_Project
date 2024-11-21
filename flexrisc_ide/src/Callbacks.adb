@@ -5,9 +5,14 @@ WITH Ada.Strings.Fixed; USE Ada.Strings.Fixed;
 WITH Ada.Text_IO; USE Ada.Text_IO;
 with System.Strings; use System.Strings;
 with GNAT.OS_Lib; use GNAT.OS_Lib;
+WITH Ada.Strings.Unbounded; USE Ada.Strings.Unbounded;
+
 
 PACKAGE BODY Callbacks IS
+   Package SU renames Ada.Strings.Unbounded;
 
+   Function "+" (str : String ) return SU.Unbounded_String IS
+      (SU.To_Unbounded_String (str) );
 
    PROCEDURE Stop_Program(Emetteur : access Gtk_widget_Record'class) IS
       PRAGMA Unreferenced (Emetteur );
@@ -23,21 +28,22 @@ PACKAGE BODY Callbacks IS
       F.Lbl.set_text("No files selected");
    END Reseting;
 
-   PROCEDURE Run(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) IS 
+   PROCEDURE Run(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre_Access) IS 
 
    Local_File_Name : String := Gtkada.File_Selection.File_Selection_Dialog;
    pragma Unreferenced (Emetteur);
 
    begin
+   F.File_Name := +Local_File_Name;
     if Local_File_Name /= "" then
         F.Lbl.set_text("You selected : " & Local_File_Name);
     end if;
 
     Ada.Text_IO.Put_Line("Le texte du label est : " & Local_File_Name);
+
    end Run;
 
    PROCEDURE Prog_FPGA(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) IS 
-   File_Name : constant String := F.Lbl.Get_Text;
    Program_Name : constant String := "quartus_pgm";
    File_sof : constant String := "C:\Users\Hakim\Downloads\terasic_de2_115.sof";
    Commande : String := "quartus_pgm -c USB-Blaster -m JTAG -o ""p;C:\Users\Hakim\Downloads\terasic_de2_115.sof""";

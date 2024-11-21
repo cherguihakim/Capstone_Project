@@ -19,11 +19,13 @@ PACKAGE P_Fenetre IS
       File_Name  : Unbounded_String;
    END RECORD ;
 
+   TYPE T_Fenetre_Access IS Access All T_Fenetre;
+
    PROCEDURE Initialize(F : IN OUT T_Fenetre) ;
 
    PACKAGE P_Handlers IS NEW Gtk.Handlers.Callback(Gtk_Widget_Record) ;
    USE P_Handlers ;
-   PACKAGE P_UHandlers IS NEW Gtk.Handlers.User_Callback(Gtk_Widget_Record,T_Fenetre) ;
+   PACKAGE P_UHandlers IS NEW Gtk.Handlers.User_Callback(Gtk_Widget_Record,T_Fenetre_Access) ;
    use P_UHandlers ;
 
 END P_Fenetre ;
