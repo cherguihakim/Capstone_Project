@@ -25,8 +25,8 @@ is
    procedure Set_File_Name (File_Name : String) is
    begin
       F.File_Name := +File_Name;
-      F.Lbl.set_text ("You selected : " & File_Name);
-      Ada.Text_IO.Put_Line ("File_Name : " & F.File_Name'Image);
+      --F.Lbl.set_text ("You selected : " & File_Name);
+      Ada.Text_IO.Put_Line ("File_Name from procedure set : " & F.File_Name'Image);
    end Set_File_Name;
 
    function Get_File_Name return String is
@@ -42,7 +42,7 @@ is
       --Création de la fenetre
       Gtk_New (GTK_Window (F.Win), Window_Toplevel);
       F.Win.Set_Title ("FlexRISC IDE");
-      F.win.set_default_size (600, 400);
+      F.win.set_default_size (1000, 400);
       F.win.set_position (win_pos_center);
 
       -- Create the main vertical box that contains Top_Grid, Main_Box (left & right), and Bottom_Grid

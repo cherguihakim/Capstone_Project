@@ -16,11 +16,12 @@ package body Callbacks is
       Main_Quit;
    end Stop_Program;
 
-   procedure Reseting (Emetteur : access GTK_Widget_Record'Class; F : Fenetre_T)
-   is
+   procedure Reseting (Emetteur : access GTK_Widget_Record'Class; F : Fenetre_T) is
+      file_empty : constant String := "";
       pragma Unreferenced (Emetteur);
    begin
       F.Lbl.set_text ("No files selected");
+      P_Fenetre.Set_File_Name(file_empty);
    end Reseting;
 
    procedure Run (Emetteur : access GTK_Widget_Record'Class;  F : Fenetre_T) is
@@ -30,6 +31,7 @@ package body Callbacks is
       pragma Unreferenced (Emetteur);
    begin
       if File_Name /= "" then
+         F.Lbl.set_text ("You selected : " & File_Name);
          P_Fenetre.Set_File_Name (File_Name);
 
           -- Add the selected file to the File_History list box
