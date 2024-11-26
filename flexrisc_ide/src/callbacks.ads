@@ -6,7 +6,9 @@ package Callbacks is
 
    procedure Stop_Program (Emetteur : access Gtk_widget_Record'class);
    procedure Reseting (Emetteur : access GTK_Widget_Record'Class; F : Fenetre_T);
-   procedure Run (Emetteur : access GTK_Widget_Record'Class);
+   procedure Run (Emetteur : access GTK_Widget_Record'Class;  F : Fenetre_T);
    PROCEDURE Prog_FPGA(Emetteur : ACCESS GTK_Widget_Record'Class ; F : Fenetre_T) ;
+
+ 
 
 end Callbacks;

@@ -4,6 +4,9 @@ with Gtkada.File_Selection; use Gtkada.File_Selection;
 with Ada.Text_IO;           use Ada.Text_IO;
 with GNAT.OS_Lib; use GNAT.OS_Lib;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Gtk.List_Box_Row; use Gtk.List_Box_Row;  
+with Gtk.Label; use Gtk.Label;                
+
 
 package body Callbacks is
 
@@ -20,12 +23,28 @@ package body Callbacks is
       F.Lbl.set_text ("No files selected");
    end Reseting;
 
-   procedure Run (Emetteur : access GTK_Widget_Record'Class) is
+   procedure Run (Emetteur : access GTK_Widget_Record'Class;  F : Fenetre_T) is
       File_Name : String := Gtkada.File_Selection.File_Selection_Dialog;
+      New_Row   : Gtk_List_Box_Row;
+      File_Label : Gtk_Label;
       pragma Unreferenced (Emetteur);
    begin
       if File_Name /= "" then
          P_Fenetre.Set_File_Name (File_Name);
+
+          -- Add the selected file to the File_History list box
+      Gtk_New(New_Row);               
+      Gtk_New(File_Label, File_Name); 
+
+       -- Adjust label alignment to left
+      File_Label.Set_Xalign(0.0);      
+      File_Label.Set_Yalign(0.5);  
+
+      New_Row.Add(File_Label);         
+      File_Label.Show;                 
+      F.File_History.Insert(New_Row, 0);    
+      New_Row.Show;  
+
       end if;
       Ada.Text_IO.Put_Line ("Le texte du label est : " & File_Name);
    end;
