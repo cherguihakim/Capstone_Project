@@ -1,10 +1,9 @@
-WITH Gtk.Main ;          USE Gtk.Main ;
-WITH P_Fenetre ;         USE P_Fenetre ;
+with Gtk.Main;  use Gtk.Main;
+with P_Fenetre; use P_Fenetre;
 
 
-PROCEDURE flexrisc_ide IS
-   F     : T_Fenetre ;
-   pragma Unreferenced(F) ;
-BEGIN
-   Main ;
-END flexrisc_ide ;
+  procedure flexrisc_ide is
+begin
+   Initialize;
+   Main;
+end flexrisc_ide;

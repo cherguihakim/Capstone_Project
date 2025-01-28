@@ -1,10 +1,14 @@
-WITH Gtk.Widget ;                USE Gtk.Widget ;
-with P_Fenetre ;                 use P_Fenetre ;
+with Gtk.Widget; use Gtk.Widget;
+with P_Fenetre;  use P_Fenetre;
+with System;     use System;
 
+package Callbacks is
 
-PACKAGE Callbacks IS
+   procedure Stop_Program (Emetteur : access Gtk_widget_Record'class);
+   procedure Reseting (Emetteur : access GTK_Widget_Record'Class; F : Fenetre_T);
+   procedure Run (Emetteur : access GTK_Widget_Record'Class;  F : Fenetre_T);
+   PROCEDURE Prog_FPGA(Emetteur : ACCESS GTK_Widget_Record'Class ; F : Fenetre_T) ;
 
-   PROCEDURE Stop_Program(Emetteur : access Gtk_widget_Record'class) ;
-   PROCEDURE Reseting(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) ;
-   PROCEDURE Run(Emetteur : ACCESS GTK_Widget_Record'Class ; F : T_Fenetre) ;
-END Callbacks ;
+ 
+
+end Callbacks;

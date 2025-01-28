@@ -8,7 +8,7 @@ project Flexrisc_Ide is
    for Main use ("flexrisc_ide.adb");
 
    package Compiler is
-      for Default_Switches ("Ada") use Flexrisc_Ide_Config.Ada_Compiler_Switches;
+      for Default_Switches ("Ada") use Flexrisc_Ide_Config.Ada_Compiler_Switches & ("-gnat2022");
    end Compiler;
 
    package Binder is
